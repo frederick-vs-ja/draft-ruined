@@ -11279,7 +11279,7 @@ namespace std {
     const char*       what() const noexcept;
 
   private:
-    error_code ec_;             // \expos
+    error_code @\exposid{ec_}@;             // \expos
   };
 }
 \end{codeblock}
@@ -11292,7 +11292,7 @@ explicit future_error(future_errc e);
 \begin{itemdescr}
 \pnum
 \effects
-Initializes \tcode{ec_} with \tcode{make_error_code(e)}.
+Initializes \exposid{ec_} with \tcode{make_error_code(e)}.
 \end{itemdescr}
 
 \indexlibrarymember{code}{future_error}%
@@ -11303,7 +11303,7 @@ const error_code& code() const noexcept;
 \begin{itemdescr}
 \pnum
 \returns
-\tcode{ec_}.
+\exposid{ec_}.
 \end{itemdescr}
 
 \indexlibrarymember{what}{future_error}%
