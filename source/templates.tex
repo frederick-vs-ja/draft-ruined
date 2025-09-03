@@ -7786,7 +7786,8 @@ Otherwise, the specified template argument values are substituted for the
 corresponding template parameters as specified below.
 
 \pnum
-After this substitution is performed, the function parameter type
+After substitution of explicitly specified template argument values is performed,
+the function parameter type
 adjustments described in~\ref{dcl.fct} are performed.
 \begin{example}
 A parameter type of ``\tcode{void (const int, int[5])}'' becomes
@@ -7829,8 +7830,9 @@ even though both of the functions called have the same function type.
 \end{note}
 
 \pnum
-The resulting substituted and adjusted function type is used as
-the type of the function template for template argument
+The function type after substitution of explicitly specified template
+arguments with their corresponding template parameters and adjustment
+is used for template argument
 deduction.  If a template argument has not been deduced and its
 corresponding template parameter has a default argument, the
 template argument is determined by substituting the template
@@ -7852,11 +7854,10 @@ void g() {
 \end{codeblock}
 \end{example}
 
-When all template arguments have been deduced or obtained from
-default template arguments, all uses of template parameters in
-the template parameter list of the template
-are replaced with the corresponding deduced
-or default argument values. If the substitution results in an
+The template argument values determined above by template argument deduction
+or default template arguments
+are substituted for their corresponding template parameters.
+If the substitution results in an
 invalid type, as described above, type deduction fails.
 If the function template has associated constraints\iref{temp.constr.decl},
 those constraints are checked for satisfaction\iref{temp.constr.constr}.
@@ -7903,8 +7904,8 @@ int main() {
 
 \pnum
 At certain points in the template argument deduction process it is necessary
-to take a function type that makes use of template parameters and replace those
-template parameters with the corresponding template arguments. This is done at
+to take a function type that makes use of template parameters and substitute those
+template parameters with the corresponding template arguments. Substitution is done at
 the beginning of template argument deduction when any explicitly specified
 template arguments are substituted into the function type, and again at the end
 of template argument deduction when any template arguments that were deduced or
@@ -7919,13 +7920,14 @@ The \defn{deduction substitution loci} are
 \item the template parameter declarations, and
 \item the template argument list of a partial specialization\iref{temp.spec.partial.general}.
 \end{itemize}
-The substitution occurs in all types and expressions that are used
+Substitution of template argument values for the corresponding template
+parameters occurs in all types and expressions that are used
 in the deduction substitution loci.
 The expressions include not only
 constant expressions such as those that appear in array bounds or as constant
 template arguments but also general expressions (i.e., non-constant expressions)
 inside \tcode{sizeof}, \keyword{decltype}, and other contexts that allow non-constant
-expressions. The substitution proceeds in lexical order and stops when
+expressions. Substitution proceeds in lexical order and stops when
 a condition that causes deduction to fail is encountered.
 If substitution into different declarations of the same function template would
 cause template instantiations to occur in a different order or not at all,
